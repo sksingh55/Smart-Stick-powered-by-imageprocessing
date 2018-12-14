@@ -1,0 +1,2 @@
+# Smart-Stick-powered-by-imageprocessing
+As a part of design project . I design a stick which detects the object in front of it like car, stair etc and informs the blind person about the object and direct him to avoid it in real time. It has voice navigation feature. SOS notification which sends alert message to all the app users in range of 1 km. It also have security features like real time video surveillance and real time tracking
