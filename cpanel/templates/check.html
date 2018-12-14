@@ -1,0 +1,144 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+
+    <meta charset="utf-8">
+    <title>Track</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+  <!--   <link href="{% static 'img/favicon.png' %}" rel="icon">
+    <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon"> -->
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/venobox/venobox.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="modal fade" id="notification">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" onclick="initMap();" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <center>
+                     <h4 style="color: #46535e; font-family: sans-serif; padding-bottom: 30px;">Someone is asking for help...!!!</h4>
+                    <!-- <h6 style="color: #46535e;">
+                        <button id="modal_login" class="btn btn-success"><span class="glyphicon glyphicon-log-in"></span> Log in</button>
+                    </h6> -->
+                    <span style="font-weight: 600; color: #46535e; font-family: 'Open Sans',sans-serif;">
+                    </span>
+
+                </center>
+                <br>
+                <!-- <ul>
+                    <li style="font-size: 10px; color: #9ca3a8;">
+                        It might take a few minutes for the OTP to reach your inbox.
+                    </li>
+                    <li style="font-size: 10px; color: #9ca3a8;">
+                        <a href="javascript:void(0)" id="resend_otp">Click Here</a> to resend OTP.
+                    </li>
+                </ul> -->
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+
+
+        <!-- JavaScript Libraries -->
+    <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+    <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/venobox/venobox.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="{% static 'contactform/contactform.js' %}"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+
+    <script>
+
+      // Initialize and add the map
+      function initMap() {
+      		var latt = parseFloat('{{latitude}}');
+      		var longi = parseFloat('{{longitude}}');
+        
+        	var map = new google.maps.Map(document.getElementById('map'), {
+        		//console.log('{{longitude}}');
+
+                    center: {
+                        lat: latt,
+                        lng: longi,
+                    },
+                    zoom: 15,
+                });
+
+
+
+        var marker = new google.maps.Marker({
+        	position: {
+        		lat: latt,
+              lng: longi,
+        	},
+        	map: map
+        });
+      }
+      function re(){
+      	location.reload();
+      }
+
+      {% if notification %}
+        $('#notification').modal('show');
+      {% else %}
+        setInterval(re,3000)
+      {% endif %}
+    </script>
+  
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATkn4hDu4jWQJrKscF8etivXKsSWHfsw0&callback=initMap">
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<style>
+        div{
+        position : absolute;
+        right : 10px;
+        top : 5px
+        }
+    </style>
+</head>
+<body>
+<div>
+
+<button type="button" onclick="location.href='{% url 'log' %}'">Logout</button>
+
+
+
+
+    </div>
+Welcome {{e}}
+
+<br><br>
+<!-- <button type="button" onclick="location.href='{% url 'create' %}'">Create Report</button>
+ -->
+ <button type="button" onclick="location.href='{% url 'track' %}'">Track</button>
+ <button id="likes" type="button" onclick="location.href='{% url 'video' %}'">Start video Streaming</button>
+<a href="192.168.43.208:8000" target="_blank">Vedio Streming</a>
+
+
+
+<script type="text/javascript">
+
+$('#likes').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.get('/video/', function(data){
+    	 console.log("requested access complete");
+    });
+});
+
+</script>
+</html>
